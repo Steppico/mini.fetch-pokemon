@@ -20,19 +20,13 @@
       await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10")
         .then((res) => res.json())
         .then((data) => (allPokemon = data.results));
+
       let result = [];
-      await Promise.all([
-        getPokemon(allPokemon[0].url),
-        getPokemon(allPokemon[1].url),
-        getPokemon(allPokemon[2].url),
-        getPokemon(allPokemon[3].url),
-        getPokemon(allPokemon[4].url),
-        getPokemon(allPokemon[5].url),
-        getPokemon(allPokemon[6].url),
-        getPokemon(allPokemon[7].url),
-        getPokemon(allPokemon[8].url),
-        getPokemon(allPokemon[9].url),
-      ]).then((pokemonArr) => {
+      await Promise.all(
+        allPokemon.map((poke) => {
+          return getPokemon(poke.url);
+        })
+      ).then((pokemonArr) => {
         pokemonArr.forEach((pokemon) => {
           if (pokemon.weight < weight) {
             result.push(pokemon);
