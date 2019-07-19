@@ -35,6 +35,7 @@ describe("pokemonager", () => {
     return pokemonager.findUnderWeight(100).then((actual) => {
       expect(actual.length).to.equal(4);
       expect(Array.isArray(actual)).to.equal(true);
+      console.log(actual);
       expect(actual.map((pokemon) => pokemon.name)).to.deep.equal(underWeight);
       Array.prototype.filter = realFilter;
     });
