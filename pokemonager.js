@@ -2,7 +2,6 @@
   class Pokemonager {
     // This should return an array of all the names of n Pokemon from the Pokemon API.
     async findNames(n) {
-      console.log("TEST IS RUNNING");
       let pokeData;
       await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${n}`)
         .then((res) => res.json())
